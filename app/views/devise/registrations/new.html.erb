@@ -4,16 +4,23 @@
     <h2 class="login-title">会員登録フォーム</h2>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= render "devise/shared/error_messages", resource: resource %>
+      <% if @user.errors.any? %>
+      <% end %>
 
       <div class="form-item">
         <i class="fa-solid fa-envelope"></i><%= f.label :メールアドレス %><br />
         <%= f.email_field :email, autofocus: true, autocomplete: "email",placeholder: "dotbit@example.com" %>
+        <% if @user.errors.include?(:email) %>
+          <p style="color: red;"><%= @user.errors.full_messages_for(:email).first %>
+        <% end %>
       </div>
 
       <div class="form-item">
         <i class="fa-solid fa-user"></i><%= f.label :名前 %> <br />
         <%= f.text_field :name, placeholder: "ドットビット" %>
+        <% if @user.errors.include?(:name) %>
+          <p style="color: red;"><%= @user.errors.full_messages_for(:name).first %>
+        <% end %>
       </div>
 
       <div class="form-item input-wrap">
@@ -23,11 +30,17 @@
         <% end %><br />
         <%= f.password_field :password, autocomplete: "new-password", placeholder: "password" %>
         <i class="toggle-pass fa fa-eye-slash"></i>
+        <% if @user.errors.include?(:password) %>
+          <p style="color: red;"><%= @user.errors.full_messages_for(:password).first %>
+        <% end %>
       </div>
       <div class="form-item input-wrap">
         <i class="fa-solid fa-key"></i><%= f.label :パスワード確認 %><br />
         <%= f.password_field :password_confirmation, autocomplete: "new-password", placeholder: "password" %>
         <i class="toggle-pass fa fa-eye-slash"></i>
+        <% if @user.errors.include?(:password_confirmation) %>
+          <p style="color: red;"><%= @user.errors.full_messages_for(:password_confirmation).first %>
+        <% end %>
       </div>
 
       <div class="button-panel">
