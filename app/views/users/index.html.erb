@@ -1,3 +1,4 @@
+<% provide(:title, 'トップページ') %>
 <div class="main">
   <div class="home-main-visual">
     <%= image_tag 'Group-discussion-bro.png', class: 'top-image' %>
@@ -76,3 +77,13 @@
     </div>
   </section>
 </div>
+<% if user_signed_in? %>
+  <% else %>
+  <div class="bl_separate">
+    <div class="bl_separate_inner">
+      <div class="bl_separate_btns01">
+        <a href="" class="btn2 btn-c"><i class="fas fa-hand-point-right"></i>まずは<span>カンタン登録</span>!<small>(30秒)</small></a>
+      </div>
+    </div>
+  </div>
+<% end %>
